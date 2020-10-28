@@ -18,13 +18,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('font_awesome/font_awesome.min.css')}}">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    Blog
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -32,8 +33,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-link"><a href="/home">Home</a></li>
+                        <li class="nav-link"><a href="/post">Add Post</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -54,17 +56,23 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{{'/profile'}}">Profile</a></li>
+                                        <li><a class="dropdown-item" href="{{'/addcategory'}}">Category</a></li>
+                                    
+                                    <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+    
+                                    </li>
+                                    
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                </div>
+                                </ul>
                             </li>
                         @endguest
                     </ul>
